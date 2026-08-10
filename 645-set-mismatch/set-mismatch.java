@@ -12,9 +12,7 @@ class Solution {
             ans[1] = 1;
         }else{
             for(int i = 0; i < nums.length - 1; i++) {
-                if(nums[i + 1] != nums[i] + 1 &&
-                nums[i + 1] != nums[i]) {
-
+                if(nums[i +1]>nums[i] + 1) {
                     ans[1] = nums[i] + 1;
                     break;
                 }
