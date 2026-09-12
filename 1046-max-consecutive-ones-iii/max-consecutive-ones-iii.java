@@ -6,17 +6,18 @@ class Solution {
         int zero = 0;
         while(right < nums.length){
             if(nums[right] == 0){
-                zero++;
+                zero+=1;
             }
+            if(zero <= k){
+                maxLen = Math.max(maxLen,right-left+1);
+                }
             while(zero >k){
                 if(nums[left] == 0){
                     zero --;
                 }
                 left++;
             }
-            maxLen = Math.max(maxLen,right-left+1);
             right++;
-            
         }
         return maxLen;
     }
