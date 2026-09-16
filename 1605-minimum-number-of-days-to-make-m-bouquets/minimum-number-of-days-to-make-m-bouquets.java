@@ -9,7 +9,7 @@ class Solution {
         }
         while (low < high) {
             int mid = low + (high - low) / 2; 
-            if (canMake(bloomDay, mid, m, k)) {
+            if (helper(bloomDay, mid, m, k)) {
                 high = mid;
             } else {
                 low = mid + 1;
@@ -17,7 +17,7 @@ class Solution {
         }
         return low;
     }
-    private boolean canMake(int[] bloomDay, int day, int m, int k) {
+    private boolean helper(int[] bloomDay, int day, int m, int k) {
         int bouquets = 0;
         int flowers = 0;
         for (int b : bloomDay) {
