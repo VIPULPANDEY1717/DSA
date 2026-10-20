@@ -9,26 +9,53 @@
  * }
  */
 class Solution {
-    public ListNode reverseBetween(ListNode head, int left, int right) {
-        ArrayList<ListNode> arr = new ArrayList<>();
-        ListNode temp = head;
-        while(temp != null){
-            arr.add(temp);
-            temp = temp.next;
-        }
-        int i = left-1, j = right -1;
-        while(i<j){
-            ListNode t1 = arr.get(i);
-            ListNode t2 = arr.get(j);
-            arr.set(i,t2);
-            arr.set(j,t1);
-            i++;
-            j--;
-        }
-        for( i = 0 ; i<arr.size(); i++){
-            arr.get(i).next = (i ==arr.size()-1)? null : arr.get(i+1); 
-        }
-        return arr.get(0);
-        
+    
+
+public ListNode reverseBetween(ListNode head, int left, int right) {
+    ListNode dummy = new ListNode(-1);
+    dummy.next = head;
+
+    ListNode temp = dummy;
+
+    for (int i = 1; i < left; i++) {
+        temp = temp.next;
     }
+
+    ListNode tail1 = temp;
+    ListNode head2 = temp.next;
+
+    // Move temp to the node at position right
+    for (int i = 0; i < right - left; i++) {
+        temp = temp.next;
+    }
+
+    ListNode tail2 = temp.next;
+    ListNode head3 = tail2.next;
+
+    // Disconnect the sublist
+    tail2.next = null;
+
+    // Reverse the sublist
+    reverse(head2);
+
+    // Reconnect
+    tail1.next = tail2;
+    head2.next = head3;
+
+    return dummy.next;
+}
+
+public void reverse(ListNode head) {
+    ListNode prev = null;
+    ListNode curr = head;
+
+    while (curr != null) {
+        ListNode next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+}
+
+
 }
