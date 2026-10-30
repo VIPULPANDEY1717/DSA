@@ -10,7 +10,7 @@ class Node {
 
 class Solution {
     public Node flatten(Node head) {
-        if(head == null) return head;
+        // if(head == null) return head;
         Node curr = head;
         while(curr != null){
             if(curr.child == null) curr = curr.next;
