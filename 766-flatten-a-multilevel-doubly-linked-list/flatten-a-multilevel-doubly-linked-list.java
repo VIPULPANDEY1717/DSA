@@ -24,7 +24,7 @@ class Solution {
                 while(temp.next != null) temp = temp.next;
                 temp.next = fwd;
                 if(fwd != null) fwd.prev = temp;
-                curr = fwd;
+                // curr = fwd;
 
             }
         }
